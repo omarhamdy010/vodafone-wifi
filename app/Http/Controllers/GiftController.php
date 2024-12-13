@@ -34,22 +34,19 @@ class GiftController extends Controller
 
             $user = Auth::user(); // Get the authenticated user
 
-            // Validate the incoming request data
             $dataValidated = $request->validate([
                 'name' => 'required',
-                'mobile' => 'required|numeric',
+                'mobile' => 'required|numeric|regex:/^[0-9]{11}$/',
                 'gift' => 'required',
             ]);
-    
-            // Check if the gift is already registered for the given mobile number
+            
             $gift = Gift::where('mobile', $request->mobile)->first();
             if ($gift) {
                 return response()->json([
                     'message' => 'You are already registered. Your Gift is ' . $gift->gift,'image'=>asset("images/close.svg")
-                ], 400); // Changed status code to 400 for conflict
+                ], 400);
             }
     
-            // Create a new gift record
             Gift::create($dataValidated);
     
             return response()->json([
@@ -57,7 +54,6 @@ class GiftController extends Controller
             ], 200); // Success status code
     
         } catch (\Exception $e) {
-            // Handle any errors that occur during the process
             return response()->json([
                 'message' => 'Something went wrong: ' . $e->getMessage()
             ], 500); // Internal server error

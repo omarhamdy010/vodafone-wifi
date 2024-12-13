@@ -35,8 +35,17 @@
                 <input type="text" placeholder="Enter Your Name" name="name" id="name" class="form-control" required>
                 
                 <label for="mobile">Mobile No :</label>
-                <input type="tel" placeholder="Enter Your Mobile" name="mobile" id="mobile" class="form-control" required>
-                
+                <input 
+                type="tel" 
+                placeholder="Enter Your Mobile" 
+                name="mobile" 
+                id="mobile" 
+                class="form-control" 
+                pattern="[0-9]{11}" 
+                maxlength="11" 
+                required 
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            
                 <label for="gift">Gift :</label>
                 <select name="gift" id="gift" class="form-select form-control" required>
                     <option selected disabled>Open this select menu</option>
@@ -90,11 +99,11 @@
                     success()
                 },
                 error: function(xhr) {
-                    var errors = xhr.responseJSON.message;
-                    var image = xhr.responseJSON.image;
-                    
-                    error(errors , image)
-                    
+                    if(xhr.status == 400){
+                        var errors = xhr.responseJSON.message;
+                        var image = xhr.responseJSON.image;
+                        error(errors , image)
+                    }                    
                 }
             });
         });
