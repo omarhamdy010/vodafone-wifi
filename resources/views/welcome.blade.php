@@ -20,7 +20,7 @@
 <body>
     <div class="main">
         <div class="upperHeader position-relative d-flex align-items-center justify-content-between">
-            <div class="logo p-2 mt-5 mt-lg-3">
+            <div class="logo p-2 mt-3">
                 <img src="images/RED logo.png" alt="">
             </div>
             <div class="shape-one">

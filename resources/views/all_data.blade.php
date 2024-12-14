@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+ 
+    
 </head>
 
 <body class="min-vh-100 overflow-auto">
@@ -21,23 +23,33 @@
         <div class="shapeInTable mt-3"></div>
         
         <div class="px-3 pb-3">
-            <div class="exportData">
-                <a href="{{ route('export') }}">
-                    <img src="{{ asset('images/send-copy.svg') }}" alt="Export">
+            <div class="exportData" style="display: flex; align-items: center; gap: 20px;direction: rtl;">
+                <a href="{{ route('export') }}" style="display: flex; align-items: center;">
+                    <img src="{{ asset('images/send-copy.svg') }}" alt="Export" style="width: 40px; height: 40px;">
                 </a>
+                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" style="display: flex; align-items: center; gap: 10px;">
+                    @csrf
+                    <input type="file" name="file" required style="padding: 5px; border: 1px solid #ddd; border-radius: 5px;color: white">
+                    <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Import
+                    </button>
+                </form>
             </div>
+            
             
             <table class="table table-bordered text-center">
                 <thead class="tableHead">
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mobile No.</th>
                         <th scope="col">Gift</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($gifts as $gift )
+                    @foreach ($gifts as $index=>$gift )
                     <tr>
+                        <td>{{$index+1}}</td>
                         <td>{{$gift->name}}</td>
                         <td>{{$gift->mobile}}</td>
                         <td>{{$gift->gift}}</td>

@@ -8,8 +8,6 @@
 body {
     background-color: var(--main-color);
     font-family: Inter;
-    min-height: 100vh;
-    overflow: hidden;
 }
 ::selection {
     background-color: var(--main-color);
@@ -22,16 +20,19 @@ body {
 
 /* Main Styles */
 .main .upperHeader .logo{
-    padding: 50px 0 0 50px !important;
+    padding: 0 0 0 50px !important;
 }
 .main .upperHeader .shape-one{
 position: absolute;
 top: 19px;
 right: 19px;
 }
+.main .upperHeader .shape-one img{
+    height: 137px
+}
 .content{
-    width: 494px;
-    margin: 70px 0 50px 50px;
+    max-width: 494px;
+    margin: 50px 0 50px 50px;
 }
 .content form label {
     font-size: 18px;
@@ -48,7 +49,7 @@ right: 19px;
 }
 .content form button {
     display: block;
-    margin: 50px auto !important;
+    margin: 25px auto !important;
     padding: 15px 50px;
     font-weight: bold;
     font-size: 18px;
@@ -58,6 +59,7 @@ right: 19px;
     bottom: 0;
     right: 0;
     z-index: -1;
+    height: 90%;
 }
 .barDownDashed{
     z-index: -1 !important;
@@ -73,6 +75,17 @@ right: 19px;
 thead tr th{
     color: var(--main-color) !important;
 }
+
+/* success popup  */
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+    border: 0.25em solid rgba(165,220,134,.4) !important;
+}
+/* wrong popup  */
+div:where(.swal2-container)
+div:where(.swal2-popup){
+    background: black !important;
+}
+
 .exportData{
     height: 100%;
     display: block;
@@ -85,17 +98,9 @@ thead tr th{
     height: 100%;
     cursor: pointer;
 }
-/* success popup  */
-div:where(.swal2-icon).swal2-success .swal2-success-ring {
-    border: 0.25em solid rgba(165,220,134,.4) !important;
-}
-/* wrong popup  */
-div:where(.swal2-container)
-div:where(.swal2-popup){
-    background: var(--white-color) !important;
-}
+
 .swal2-title{
-    color: black;
+    color: white;
 }
 div:where(.swal2-icon).swal2-error {
     border-color: var(--main-color) !important;
@@ -105,7 +110,7 @@ div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{
     background-color: var(--main-color) !important;
 }
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
-    background-color: var(--main-color) !important;
+    background-color: #0072f5 !important;
 }
 div:where(.swal2-container).swal2-top, div:where(.swal2-container).swal2-center, div:where(.swal2-container).swal2-bottom{
     background-color: var(--secondary-color) !important;
@@ -129,10 +134,11 @@ box-shadow:none !important ;
         margin: 25px auto !important;
     }
     .christmasTree img{
-        height: 75%;
+        height: 90%;
     }
     .barDownDashed{
         bottom: -15px;
     }
 }
+
 

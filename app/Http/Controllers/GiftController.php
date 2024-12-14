@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\DataExport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -62,8 +63,23 @@ class GiftController extends Controller
 
     public function export()
     {
-        $user = Auth::user(); // Get the authenticated user
+        $user = Auth::user();
 
         return Excel::download(new DataExport, 'gifts.xlsx');
     }
+
+    public function importUsers(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+    
+        try {
+            Excel::import(new UsersImport, $request->file('file'));
+            return back()->with('success', 'Gifts imported successfully.');
+        } catch (\Exception $e) {
+             return back()->withErrors(['error' => $e->getMessage()]);
+        }
+        }
+
 }
