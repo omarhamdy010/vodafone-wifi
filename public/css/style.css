@@ -59,7 +59,7 @@ right: 19px;
     bottom: 0;
     right: 0;
     z-index: -1;
-    height: 90%;
+    height: 75%;
 }
 .barDownDashed{
     z-index: -1 !important;
@@ -134,7 +134,7 @@ box-shadow:none !important ;
         margin: 25px auto !important;
     }
     .christmasTree img{
-        height: 90%;
+        height: 75%;
     }
     .barDownDashed{
         bottom: -15px;
