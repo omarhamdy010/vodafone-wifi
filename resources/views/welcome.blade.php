@@ -41,8 +41,8 @@
                 name="mobile" 
                 id="mobile" 
                 class="form-control" 
-                pattern="[0-9]{11}" 
-                maxlength="11" 
+                pattern="[0-9]{10}" 
+                maxlength="10" 
                 required 
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                             
