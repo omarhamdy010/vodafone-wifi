@@ -37,7 +37,7 @@ class GiftController extends Controller
 
             $dataValidated = $request->validate([
                 'name' => 'required',
-                'mobile' => 'required|numeric|regex:/^[0-9]{10}$/',
+                'mobile' => 'required|numeric|regex:/^[0-9]{11}$/',
                 'gift' => 'required',
             ]);
             
