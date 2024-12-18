@@ -71,12 +71,10 @@ class GiftController extends Controller
     public function importUsers(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,csv',
+            'file' => 'required',
         ]);
     
         try {
-            \Log::info('Importing row: ', $request->file('file'));
-
             Excel::import(new UsersImport, $request->file('file'));
             return back()->with('success', 'Users imported successfully.');
         } catch (\Exception $e) {
