@@ -75,7 +75,7 @@ class GiftController extends Controller
         ]);
     
         try {
-            dd($request->all());
+            dd($request->file('file'));
             Excel::import(new UsersImport, $request->file('file'));
             return back()->with('success', 'Gifts imported successfully.');
         } catch (\Exception $e) {
