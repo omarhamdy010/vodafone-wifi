@@ -16,16 +16,18 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        dd($row , 'dsujiohb');
-         if ($this->isValid($row)) {
-             return new Gift([
+        // Log the row for debugging without halting execution
+        \Log::info('Importing row: ', $row);
+
+        if ($this->isValid($row)) {
+            return new Gift([
                 'name'   => $row['name'],
                 'mobile' => $row['phone_number'],
                 'gift'   => $row['gift'],
             ]);
         }
 
-        // Return null to skip invalid rows
+        // Skip invalid rows
         return null;
     }
 
@@ -37,8 +39,8 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function isValid(array $row): bool
     {
-         return isset($row['name'], $row['phone_number'], $row['gift']) &&
+        return isset($row['name'], $row['phone_number'], $row['gift']) &&
             is_string($row['name']) &&
-             is_string($row['gift']);
+            is_string($row['gift']);
     }
 }
