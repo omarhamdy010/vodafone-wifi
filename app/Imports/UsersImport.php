@@ -17,20 +17,26 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        // Clean the phone number by removing non-numeric characters
+        // Ensure row contains required keys
+        if (!$this->hasRequiredKeys($row)) {
+            Log::error('Import Error: Missing required keys in row: ' . json_encode($row));
+            return null; // Skip the row
+        }
+
+        // Clean the phone number
         $cleanedPhoneNumber = preg_replace('/\D/', '', $row['phone_number']);
 
         // Validate the cleaned data
         if ($this->isValid($row, $cleanedPhoneNumber)) {
             return new Gift([
                 'name'   => $row['name'],
-                'mobile' => $cleanedPhoneNumber,
+                'mobile' => substr($cleanedPhoneNumber, 0, 15), // Truncate to fit DB column
                 'gift'   => $row['gift'],
             ]);
         }
 
         // Log invalid rows
-        Log::error('Invalid row: ' . json_encode($row));
+        Log::error('Import Error: Invalid row: ' . json_encode($row));
         return null; // Skip invalid rows
     }
 
@@ -43,10 +49,21 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function isValid(array $row, string $cleanedPhoneNumber): bool
     {
-        return isset($row['name'], $row['phone_number'], $row['gift']) &&
+        return isset($row['name'], $row['gift']) &&
             is_string($row['name']) &&
             is_string($row['gift']) &&
             $this->isValidPhoneNumber($cleanedPhoneNumber);
+    }
+
+    /**
+     * Check if the row has all required keys.
+     *
+     * @param array $row
+     * @return bool
+     */
+    private function hasRequiredKeys(array $row): bool
+    {
+        return isset($row['name'], $row['phone_number'], $row['gift']);
     }
 
     /**
@@ -57,7 +74,6 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function isValidPhoneNumber(string $phoneNumber): bool
     {
-        // Ensure the phone number length is within a reasonable range
         return strlen($phoneNumber) >= 10 && strlen($phoneNumber) <= 15;
     }
 }
