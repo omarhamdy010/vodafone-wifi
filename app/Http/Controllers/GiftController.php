@@ -71,7 +71,7 @@ class GiftController extends Controller
     public function importUsers(Request $request)
     {
         $request->validate([
-            'file' => 'required',
+            'file' => 'required|mimes:xlsx,csv',
         ]);
     
         try {

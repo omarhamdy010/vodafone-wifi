@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('gifts', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->integer('mobile')->nullable();
+            $table->string('mobile', 20)->nullable();
             $table->string('gift')->nullable();
             $table->timestamps();
         });
