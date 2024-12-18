@@ -16,13 +16,13 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-         if ($this->isValid($row)) {
+        //  if ($this->isValid($row)) {
              return new Gift([
                 'name'   => $row['name'],
                 'mobile' => $row['phone_number'],
                 'gift'   => $row['gift'],
             ]);
-        }
+        // }
 
         // Return null to skip invalid rows
         return null;
