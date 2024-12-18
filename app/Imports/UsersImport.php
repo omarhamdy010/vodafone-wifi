@@ -16,7 +16,7 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        dd($row);
+        dd($row , 'dsujiohb');
          if ($this->isValid($row)) {
              return new Gift([
                 'name'   => $row['name'],
