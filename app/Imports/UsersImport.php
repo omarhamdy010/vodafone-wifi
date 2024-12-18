@@ -17,7 +17,6 @@ class UsersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         // Log the row for debugging without halting execution
-        \Log::info('Importing row: ', $row);
 
         if ($this->isValid($row)) {
             return new Gift([

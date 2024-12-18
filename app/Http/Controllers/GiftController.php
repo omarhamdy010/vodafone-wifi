@@ -75,6 +75,8 @@ class GiftController extends Controller
         ]);
     
         try {
+            \Log::info('Importing row: ', $request->file('file'));
+
             Excel::import(new UsersImport, $request->file('file'));
             return back()->with('success', 'Users imported successfully.');
         } catch (\Exception $e) {
