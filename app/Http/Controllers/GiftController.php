@@ -75,12 +75,12 @@ class GiftController extends Controller
         ]);
     
         try {
-            dd($request->file('file'));
             Excel::import(new UsersImport, $request->file('file'));
+            dd('efd');
             return back()->with('success', 'Gifts imported successfully.');
         } catch (\Exception $e) {
             dd($e->getMessage());
-             return back()->withErrors(['error' => $e->getMessage()]);
+            return back()->withErrors(['error' => $e->getMessage()]);
         }
         }
 
