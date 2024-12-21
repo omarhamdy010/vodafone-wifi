@@ -51,6 +51,7 @@
                     <option selected disabled>Open this select menu</option>
                     <option value="Ornament with TBS Cookies">Ornament with TBS Cookies</option>
                     <option value="Old Socks">Old Socks</option>
+                    <option value="Tree">Tree</option> 
                     <option value="Ornament with Pictures">Ornament with Pictures</option>
                     <option value="Hot Chocolate">Hot Chocolate</option>
                     <option value="Hoodie">Hoodie</option>
@@ -60,7 +61,7 @@
                     <option value="Planner">Planner</option>
                     <option value="New Socks">New Socks</option>
                     <option value="Candle">Candle</option>
-                    <option value="Locken ">Locken </option>
+                    <option value="Tote bag ">Tote bag </option>
                     <option value="Serums">Serums</option>
                     <option value="Scrunchies">Scrunchies</option>
                     <option value="Frames">Frames</option>
