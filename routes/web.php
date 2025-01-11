@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GiftController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -15,11 +14,4 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', [GiftController::class, 'index'])->name('home');
-Route::get('/export-gifts', [GiftController::class, 'export'])->name('export');
-Route::get('/all-gifts', [GiftController::class, 'allGift']);
-Route::post('/store', [GiftController::class, 'store'])->name('store.gift');
-Route::post('/import-users', [GiftController::class, 'importUsers'])->name('import');
-
-Auth::routes();
 

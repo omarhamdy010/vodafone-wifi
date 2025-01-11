@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Gift;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -13,14 +13,14 @@ class DataExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Gift::select('name','mobile','gift')->get();
+        return User::select('name','mobile','score')->get();
     }
     public function headings(): array
     {
         return [
             'Name',
             'Phone Number',
-            'Gift'
+            'score'
         ];
     }
 }

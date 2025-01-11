@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Gift;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class UsersImport implements ToModel, WithHeadingRow
 {
     /**
-     * Map the Excel row to the Gift model.
+     * Map the Excel row to the User model.
      *
      * @param array $row
      * @return \Illuminate\Database\Eloquent\Model|null
@@ -28,10 +28,10 @@ class UsersImport implements ToModel, WithHeadingRow
 
         // Validate the cleaned data
         if ($this->isValid($row, $cleanedPhoneNumber)) {
-            return new Gift([
+            return new User([
                 'name'   => $row['name'],
                 'mobile' => substr($cleanedPhoneNumber, 0, 15), // Truncate to fit DB column
-                'gift'   => $row['gift'],
+                'score'   => $row['score'],
             ]);
         }
 
@@ -49,9 +49,8 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function isValid(array $row, string $cleanedPhoneNumber): bool
     {
-        return isset($row['name'], $row['gift']) &&
+        return isset($row['name'], $row['score']) &&
             is_string($row['name']) &&
-            is_string($row['gift']) &&
             $this->isValidPhoneNumber($cleanedPhoneNumber);
     }
 
@@ -63,7 +62,7 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function hasRequiredKeys(array $row): bool
     {
-        return isset($row['name'], $row['phone_number'], $row['gift']);
+        return isset($row['name'], $row['phone_number'], $row['score']);
     }
 
     /**
