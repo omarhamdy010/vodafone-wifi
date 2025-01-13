@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -15,3 +16,6 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
+Route::get('/all-users', [UserController::class, 'allUser']);
+Route::get('/export-users', [UserController::class, 'export'])->name('export');
+Route::post('/import-users', [UserController::class, 'importUsers'])->name('import');

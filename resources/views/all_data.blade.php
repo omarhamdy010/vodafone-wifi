@@ -20,7 +20,7 @@
 
 <body class="min-vh-100 overflow-auto">
     <div class="main">
-        <div class="shapeInTable mt-3"></div>
+        {{-- <div class="shapeInTable mt-3"></div> --}}
         
         <div class="px-3 pb-3">
             <div class="exportData" style="display: flex; align-items: center; gap: 20px;direction: rtl;">
@@ -43,22 +43,22 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mobile No.</th>
-                        <th scope="col">Gift</th>
+                        {{-- <th scope="col">User</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($gifts as $index=>$gift )
+                    @foreach ($users as $index=>$user )
                     <tr>
                         <td>{{$index+1}}</td>
-                        <td>{{$gift->name}}</td>
-                        <td>{{$gift->mobile}}</td>
-                        <td>{{$gift->gift}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->mobile}}</td>
+                        {{-- <td>{{$user->score}}</td> --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="pagination">
-                {{ $gifts->links() }}
+                {{ $users->links() }}
             </div>
             {{-- <div class="d-flex align-items-center justify-content-between mt-5">
                 <div>
@@ -82,9 +82,9 @@
                 </div>
             </div> --}}
         </div>
-        <div class="barDownDashed fixed-bottom">
+        {{-- <div class="barDownDashed fixed-bottom">
             <img src="images/pattern22 1.png" class="w-100" alt="">
-        </div>
+        </div> --}}
     </div>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>

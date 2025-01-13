@@ -31,7 +31,7 @@ class UsersImport implements ToModel, WithHeadingRow
             return new User([
                 'name'   => $row['name'],
                 'mobile' => substr($cleanedPhoneNumber, 0, 15), // Truncate to fit DB column
-                'score'   => $row['score'],
+                // 'score'   => $row['score'],
             ]);
         }
 
@@ -49,7 +49,7 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function isValid(array $row, string $cleanedPhoneNumber): bool
     {
-        return isset($row['name'], $row['score']) &&
+        return isset($row['name']) &&
             is_string($row['name']) &&
             $this->isValidPhoneNumber($cleanedPhoneNumber);
     }
@@ -62,7 +62,7 @@ class UsersImport implements ToModel, WithHeadingRow
      */
     private function hasRequiredKeys(array $row): bool
     {
-        return isset($row['name'], $row['phone_number'], $row['score']);
+        return isset($row['name'], $row['phone_number']);
     }
 
     /**

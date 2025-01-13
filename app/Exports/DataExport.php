@@ -13,14 +13,15 @@ class DataExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return User::select('name','mobile','score')->get();
+        // return User::select('name','mobile','score')->get();
+        return User::select('name','mobile')->get();
     }
     public function headings(): array
     {
         return [
             'Name',
             'Phone Number',
-            'score'
+            // 'score'
         ];
     }
 }

@@ -20,10 +20,8 @@ class UserController extends Controller
     public function allUser(Request $request)
     {
         $users = User::paginate(20);
+        return view('all_data', compact('users')); // Corrected compact method
 
-        return response()->json([
-            'users' => $users
-        ], 200); // Success status code
     }
 
     public function store(Request $request)
@@ -97,9 +95,9 @@ class UserController extends Controller
     
         try {
             Excel::import(new UsersImport, $request->file('file'));
-            return response()->json([
-                'message' => 'Users imported successfully'
-            ], 200); 
+            // return response()->json([
+            //     'message' => 'Users imported successfully'
+            // ], 200); 
             return back()->with('success', 'Users imported successfully.');
         } catch (\Exception $e) {
             return response()->json([
