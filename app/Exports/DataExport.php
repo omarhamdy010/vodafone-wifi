@@ -19,7 +19,7 @@ class DataExport implements FromCollection, WithHeadings
     
     public function collection()
     {
-        return User::where('type',$type)->select('name','mobile')->get();
+        return User::where('type',$this->type)->select('name','mobile')->get();
     }
     public function headings(): array
     {
