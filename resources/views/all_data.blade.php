@@ -24,10 +24,10 @@
         
         <div class="px-3 pb-3">
             <div class="exportData" style="display: flex; align-items: center; gap: 20px;direction: rtl;">
-                <a href="{{ route('export') }}" style="display: flex; align-items: center;">
+                <a href="{{ route('export', ['type' => $type]) }}" style="display: flex; align-items: center;">
                     <img src="{{ asset('images/send-copy.svg') }}" alt="Export" style="width: 40px; height: 40px;">
                 </a>
-                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" style="display: flex; align-items: center; gap: 10px;">
+                <form action="{{ route('import', ['type' => $type]) }}" method="POST" enctype="multipart/form-data" style="display: flex; align-items: center; gap: 10px;">
                     @csrf
                     <input type="file" name="file" required style="padding: 5px; border: 1px solid #ddd; border-radius: 5px;color: white">
                     <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">

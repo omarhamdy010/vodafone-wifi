@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $users = User::where('type',$type)->paginate(20);
 
-        return view('all_data', compact('users'));
+        return view('all_data', compact('users','type'));
 
     }
 
