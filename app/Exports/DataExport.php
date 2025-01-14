@@ -8,13 +8,18 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class DataExport implements FromCollection, WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+
+    protected $type;
+
+    // Constructor to accept export type
+    public function __construct($type)
+    {
+        $this->type = $type;
+    }
+    
     public function collection()
     {
-        // return User::select('name','mobile','score')->get();
-        return User::select('name','mobile')->get();
+        return User::where('type',$type)->select('name','mobile')->get();
     }
     public function headings(): array
     {

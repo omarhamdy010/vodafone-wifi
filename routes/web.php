@@ -16,6 +16,6 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
-Route::get('/all-users', [UserController::class, 'allUser']);
-Route::get('/export-users', [UserController::class, 'export'])->name('export');
-Route::post('/import-users', [UserController::class, 'importUsers'])->name('import');
+Route::get('{type}/all-users', [UserController::class, 'allUser']);
+Route::get('{type}/export-users', [UserController::class, 'export'])->name('export');
+Route::post('{type}/import-users', [UserController::class, 'importUsers'])->name('import');

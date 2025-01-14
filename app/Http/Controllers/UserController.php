@@ -17,10 +17,11 @@ class UserController extends Controller
     //     return view('welcome');
     // }
 
-    public function allUser(Request $request)
+    public function allUser(Request $request,$type)
     {
-        $users = User::paginate(20);
-        return view('all_data', compact('users')); // Corrected compact method
+        $users = User::where('type',$type)->paginate(20);
+
+        return view('all_data', compact('users'));
 
     }
 
@@ -33,6 +34,7 @@ class UserController extends Controller
             $dataValidated = $request->validate([
                 'name' => 'required',
                 'mobile' => 'required|numeric|regex:/^[0-9]{11}$/',
+                'type'=> 'required'
             ]);
             
             $User = User::where('mobile', $request->mobile)->first();
@@ -80,11 +82,14 @@ class UserController extends Controller
     }
 
 
-    public function export()
+    public function export($type)
     {
         $user = Auth::user();
-
-        return Excel::download(new DataExport, 'users.xlsx');
+    
+        // Customize file name based on the type
+        $fileName = 'users_' . strtolower($type) . '.xlsx';
+    
+        return Excel::download(new DataExport($type), $fileName);
     }
 
     public function importUsers(Request $request)
